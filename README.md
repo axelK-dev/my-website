@@ -8,7 +8,14 @@
 
 This project is a multi-page website created for the fictional *FictionTown Book Club*. The goal of this assignment is to demonstrate how HTML structure and CSS styling work together to create a clean, readable, and user-friendly website.
 
-This project emphasizes clarity, accessibility, and consistency rather than overly complex design.
+Across multiple modules, this project was expanded to include:
+
+- CSS styling and selector usage
+- Layout and spacing control
+- Flexbox-based organization
+- Section-specific styling using nested selectors
+
+The design emphasizes clarity, readability, and intentional structure.
 
 ---
 
@@ -33,190 +40,262 @@ my-website/
 
 ## Live Website vs Repository
 
-This project exists in two important locations:
+### GitHub Repository
 
-### GitHub Repository (Code Storage)
-
-This is where all files are stored and version-controlled.
-
-Example:
-```
-https://github.com/axelK-dev/my-website
-```
+https://github.com/axelK-dev/my-website/
 
 ---
 
 ### Live Website (GitHub Pages)
 
-GitHub Pages allows the project to be hosted as a real website on the internet.
-
-The live site follows this format:
-```
 https://axelK-dev.github.io/my-website/
-```
 
-- This version is viewable in a browser
-- It reflects the HTML and CSS files in the repository
-- Changes pushed to GitHub update the live site automatically
+- This is the deployed version of the site
+- Reflects the current HTML and CSS in the repository
+- Updates automatically when changes are pushed
 
 ---
 
 ## Deployment Process
 
-To publish the site using GitHub Pages:
-
-1. Open the repository on GitHub
-2. Go to **Settings**
-3. Select **Pages**
-4. Under **Source**, choose:
-   - Branch: `main`
-   - Folder: `/ (root)`
-5. Save settings
-
-GitHub then generates a public URL for the live site.
+1. Push changes using:
+   ```bash
+   git add .
+   git commit -m "update"
+   git push
+   ```
+2. GitHub Pages builds and publishes the site
+3. View the live site in a browser
 
 ---
 
-## CSS Implementation
+## CSS Implementation (Module 4 Requirements)
 
-The site uses an **external stylesheet** located at:
+The site uses an external stylesheet:
 
 ```
 styles/styles.css
 ```
 
-This separates content (HTML) from presentation (CSS), improving organization and maintainability.
+### Selector Usage
+
+Type selector: line 5 (body)  
+Class selector: line 86 (.highlight-section)  
+Relational selector: line 48 (nav ul li)  
+Combination selector: line 25 (header h1)  
+Pseudo-class: line 58 (nav a:hover)  
+Attribute selector: line 102 (img[alt])  
 
 ---
 
-## Selector Usage (Assignment Requirements)
+## CSS Design Choices
 
-### Type Selector
+### Typography
+- font-family
+- font-size
+- line-height
+
+These improve readability and create a consistent text experience.
+
+---
+
+### Color System
+- #faf9f7 (background)
+- #3b5a40 (headings)
+- #3b7d4c (interaction)
+- #222222 (text)
+
+---
+
+### Layout
+- Centered content using max-width
+- Consistent spacing with margin and padding
+- Section separation for readability
+
+---
+
+## Module 5: Layout and Flexbox Expansion
+
+### Section Focus
+
+The section styled most intentionally was the highlighted content section.
+
+This section was chosen because it represents grouped information that benefits from visual separation and emphasis.
+
+---
+
+### Styled Section Container
+
+The selected section includes:
+
+- Background color distinct from page
+- Padding for internal spacing
+- Margin for separation
+- Border accent for visual identity
+
+This creates a clear content block that improves readability and structure.
+
+---
+
+### Flexbox Usage
+
+Flexbox was applied to organize grouped content.
+
+Key properties used:
+
+- display: flex
+- justify-content
+- align-items
+- gap
+
+Flexbox changed the layout from a vertical stack to a more structured and responsive arrangement, improving alignment and spacing.
+
+---
+
+### Image Styling
+
+One image was styled with:
+
+- max-width for responsiveness
+- border-radius for softness
+- centered layout
+
+This improves visual consistency and presentation.
+
+---
+
+## Advanced CSS Selectors Challenge
+
+### Section Focus
+
+The highlight-section was used to explore advanced selector behavior.
+
+---
+
+### Task 1: Section-Specific Styling
+
+Selectors such as:
+
 ```css
-body {
+.highlight-section h2
+.highlight-section p
 ```
-- Sets global font, spacing, and background
+
+allow styling only inside that section without affecting global elements.
 
 ---
 
-### Class Selector
+### Task 2: Nested Lists and Links
+
+Inside the section:
+
 ```css
-.highlight-section {
+.highlight-section ul li
+.highlight-section a:hover
 ```
-- Highlights important content visually
-- Used for emphasis in key sections
+
+These override global styles only within the section.
 
 ---
 
-### Relational Selector (Descendant)
+### Task 3: Descendants vs Direct Children
+
 ```css
-nav ul li {
+.highlight-section p
+.highlight-section > p
 ```
-- Targets list items inside navigation
 
+- descendant affects all nested elements
+- direct child affects only immediate children
 
 ---
 
-### Combination Selector
+### Task 4: Combining Classes and Elements
+
 ```css
-header h1 {
+.highlight-section img
 ```
-- Styles a specific element *within* another element
 
-Additional example:
+Images inside the section are styled differently than global images.
+
+---
+
+### Task 5: Pseudo-Class Precision
+
 ```css
-.highlight-section h2 {
+.highlight-section a:hover
 ```
 
----
-
-### Pseudo-Class Selector
-```css
-nav a:hover {
-```
-- Adds interaction when users hover over links
+Applies hover effects specifically inside the section rather than globally.
 
 ---
 
-### Attribute Selector
-```css
-img[alt] {
-```
-- Targets images with alt text
-- Reinforces accessibility practices
+### Task 6: Reducing Redundancy
 
----
-
-## Typography Choices
-
-The following font properties are used:
-
-- `font-family`: Arial, sans-serif
-- `font-size`: uses `rem` for scalability
-- `line-height`: improves readability
-
----
-
-## Measurement Units
-
-Only **relative units** are used:
-
-- `rem` → spacing and font sizing
-- `ch` → readable line lengths
-- `%` → responsive images
-
----
-
-## Color Usage
-
-All colors are defined using hex values:
-
-- `#faf9f7` → background
-- `#3b5a40` → headings
-- `#3b7d4c` → hover effects
-- `#222222` → text
-
-The palette supports a calm and readable design.
-
----
-
-## Layout Decisions
-
-- Content is centered using `max-width: 70ch`
-- Sections are spaced evenly for readability
-- Navigation is simple and vertical
-- Padding creates balance and breathing room
-
----
-
-## Accessibility Considerations
-
-- Images include descriptive `alt` attributes
-- Hover states improve navigation clarity
-- Text contrast supports readability
-- Semantic HTML improves structure
+Repeated styles were consolidated using more specific selectors, reducing duplication and improving maintainability.
 
 ---
 
 ## Reflection
 
-This project demonstrates how CSS helps:
+### What section did you focus on styling and why?
 
-- Build visual hierarchy
-- Improve readability
-- Add user interaction
-- Maintain consistency across pages
-
-The focus was on creating a stable, thoughtful user experience rather than adding unnecessary complexity.
+The highlight section was the focus because it represents grouped content that benefits from visual separation and structure.
 
 ---
 
+### How did Flexbox change the layout?
 
-- **GitHub Repository URL:**  
-  https://github.com/axelK-dev/my-website
-
-- **Live GitHub Pages URL:**  
-  https://axelK-dev.github.io/my-website/
+Flexbox improved alignment and spacing between elements, making the layout more controlled and visually balanced compared to a simple vertical flow.
 
 ---
-________________________________________
+
+### One CSS rule I feel confident about
+
+```css
+nav ul li
+```
+
+This relational selector clearly demonstrates how structure influences styling.
+
+---
+
+### One CSS rule that was confusing at first
+
+```css
+.highlight-section > p
+```
+
+Understanding the difference between descendant and direct child selectors required careful observation of how nesting affects styling.
+
+---
+
+### Why are nested selectors more useful than global styling?
+
+Nested selectors allow precise control, preventing unwanted styling across the entire page and enabling section-specific design.
+
+---
+
+### One selector that felt especially powerful
+
+```css
+.highlight-section a:hover
+```
+
+It demonstrates how styling can be both contextual and interactive.
+
+---
+
+### One selector that took time to understand
+
+The difference between:
+
+```css
+section p
+section > p
+```
+
+Understanding this clarified how CSS reads hierarchy.
+
+
+
