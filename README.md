@@ -114,7 +114,7 @@ These improve readability and create a consistent text experience.
 
 ---
 
-## Module 5: Layout and Flexbox Expansion
+## Module 4: Layout and Flexbox Expansion
 
 ### Section Focus
 
