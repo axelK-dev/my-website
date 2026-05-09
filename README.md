@@ -296,6 +296,300 @@ section > p
 ```
 
 Understanding this clarified how CSS reads hierarchy.
+## CSS Animation: Ken Burns Effect (Advanced Styling)
 
+### Overview
 
+A subtle Ken Burns-style animation was implemented entirely using CSS to enhance visual engagement across the site without relying on JavaScript.
 
+The effect introduces gentle motion through controlled zoom and panning, creating a calm and cinematic presentation for images.
+
+---
+
+### Implementation Approach
+
+The animation is applied using a reusable image class:
+
+```css
+.ken-burns-pic {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  animation: kenburns 12s ease-in-out infinite;
+}
+```
+
+---
+
+### Keyframe Animation
+
+The effect is achieved using CSS `@keyframes`:
+
+```css
+@keyframes kenburns {
+  0% {
+    transform: scale(1.02);
+  }
+
+  100% {
+    transform: scale(1.08);
+  }
+}
+```
+
+---
+
+### Container Structure
+
+Images are placed inside a controlled frame:
+
+```css
+.image-frame {
+  overflow: hidden;
+  height: 300px;
+}
+```
+
+This ensures that:
+
+- The image fills the container
+- Overflow is clipped cleanly
+- The animation appears as a controlled camera movement
+
+---
+
+### Design Considerations
+
+Several design decisions were made to maintain visual clarity:
+
+- Minimal zoom range (1.02–1.08) to reduce aggressive cropping
+- Slow animation timing for a calm user experience
+- Consistent default focus using `object-position: center`
+
+---
+
+### Image-Specific Adjustments
+
+Some images required custom tuning due to composition differences:
+
+```css
+.library-kenburns {
+  object-position: 50% 30%;
+  animation: libraryBurns 15s ease-in-out infinite;
+}
+```
+
+This allows more of the image to remain visible and preserves important visual areas.
+
+---
+
+### Challenges and Solutions
+
+**Inconsistent Cropping**  
+Images with different aspect ratios behaved unpredictably when scaled.
+
+- Reduced zoom intensity
+- Adjusted focal points using `object-position`
+- Selected images with better composition
+
+**Too Many Variables**  
+Balancing layout, motion, and cropping made troubleshooting difficult.
+
+- Isolated test sections were created
+- One image was tuned at a time
+- Dedicated classes were used for special cases
+
+---
+
+### Key Learning Outcome
+
+This feature demonstrated that CSS alone can create dynamic visual effects, but effective results depend on balancing animation, layout constraints, and image composition.
+---
+# Module 5 — Page Layout + Box Model / Padding Lessons
+
+## What I intended
+**Design goal:** keep text readable inside consistent “cards” while using the About page to demonstrate a **2‑column layout**. 
+
+---
+
+## Requirements → Where my code shows them
+
+### ✅ Padding and/or margins on 3+ elements (aesthetic spacing)
+- **Header padding** creates breathing room: `header { padding: 2rem 1.5rem; }`   
+- **Main padding** creates gutters: `main { padding: 2rem 1.5rem; }`   
+- **Card padding + spacing**: `.content-box { padding: 1.5rem; margin-bottom: 2rem; }`   
+- **Row spacing**: `.about-layout { margin-bottom: 2rem; }`   
+
+### ✅ Borders on at least one element
+- Borders applied to every card for clear separation:
+  - `.content-box { border: 0.1rem solid #e3e1db; }`   
+
+### ✅ Background gradient (doesn’t harm readability)
+- Background gradient is applied to the whole page:
+  - `body { background: linear-gradient(...); }`   
+- Readability stays high because text sits on white `.content-box` cards:
+  - `.content-box { background-color: #ffffff; }`   
+
+### ✅ 2nd page uses a 2‑column layout
+- About page uses **two separate float-based 2‑column rows**:
+  - Row 1: `.about-image` + `.about-mission`
+  - Row 2: `.about-history` + `.about-values`   
+
+---
+
+## Exact code patterns I kept (the “tricks” that matter)
+
+### 1) About page layout scaffold (HTML: wrapper rows + column boxes)
+I grouped each pair of columns into a wrapper row (`.about-layout`). 
+
+```html
+<!-- INTRO (full-width card) -->
+<section class="content-box">
+  ...
+</section>
+
+<!-- ROW 1 (two columns) -->
+<section class="about-layout">
+  <div class="about-image content-box">
+    ...
+  </div>
+
+  <div class="about-mission content-box">
+    ...
+  </div>
+</section>
+
+<!-- ROW 2 (two columns) -->
+<section class="about-layout">
+  <div class="about-history content-box">
+    ...
+  </div>
+
+  <div class="about-values content-box">
+    ...
+  </div>
+</section>
+```
+
+**Why this is a best practices habit:** wrapping columns into explicit “rows” makes layout predictable and prevents random stacking. 
+
+---
+
+### 2) Float-based columns (CSS: float + width + gap)
+I used floats and widths to make the boxes sit side-by-side. 
+
+```css
+/* Row wrapper */
+.about-layout {
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+/* FIRST ROW */
+.about-image {
+  float: left;
+  width: 40%;
+  margin-right: 2%;
+}
+
+.about-mission {
+  float: left;
+  width: 58%;
+}
+
+/* SECOND ROW */
+.about-history {
+  float: left;
+  width: 48%;
+  margin-right: 2%;
+}
+
+.about-values {
+  float: left;
+  width: 48%;
+}
+```
+
+**Three “basic” float rules to remember:**
+1. `float: left` turns boxes into columns.   
+2. `% width` decides how much space each column takes.   
+3. `margin-right` creates the gap between columns.   
+
+---
+
+### 3) Float clearing (CSS: the wrapper must not collapse)
+I used the wrapper clear technique:
+
+```css
+.about-layout { overflow: hidden; }
+```
+
+This keeps each row wrapper “containing” its floated children. 
+
+---
+
+### 4) Mobile readability fallback (CSS: stack on small screens)
+```css
+@media (max-width: 768px) {
+  .about-image,
+  .about-mission,
+  .about-history,
+  .about-values {
+    float: none;
+    width: 100%;
+    margin-right: 0;
+  }
+}
+```
+This preserves readability by reverting to one column on small screens. 
+
+---
+
+### 5) Container width (CSS: columns need room to exist)
+```css
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+```
+If `main` is too narrow, even correct float code will stack. 
+
+---
+
+## The padding lesson (the real concept)
+My cards add padding and borders: 
+
+```css
+.content-box {
+  padding: 1.5rem;
+  border: 0.1rem solid #e3e1db;
+}
+```
+
+**Key lesson:** padding/borders affect how much space a column *effectively* consumes in a row.  
+So even if widths look fine, layout can stack when:
+- the container is narrow, OR
+- the total “effective width” (content + padding + border + margins/gaps) exceeds the row. 
+
+---
+
+## DevTools / Inspector: the “basic” debugging move I should use next time
+If columns stack unexpectedly, the fastest checks are:
+
+1. Inspect `.about-image` (or `.about-history`) → confirm `float: left` is applied.   
+2. Look at the **box model** panel → see content size vs padding vs border (why it doesn’t fit).   
+3. Inspect `main` → confirm it has `max-width: 900px` and padding (container constraints).   
+4. Inspect `.about-layout` → confirm `overflow: hidden` (row clearing).   
+
+---
+
+## Future checklist (what I should remember)
+- ✅ Always group columns into row wrappers (`.about-layout`).   
+- ✅ Floats need: `float + width + gap`, plus a clear (`overflow: hidden`).   
+- ✅ Container width matters (`main max-width`).   
+- ✅ Padding/border are part of layout reality (they can cause stacking).   
+- ✅ Always include a mobile stack fallback.   
+
+---
