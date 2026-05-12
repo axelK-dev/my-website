@@ -402,18 +402,15 @@ Balancing layout, motion, and cropping made troubleshooting difficult.
 
 ---
 
-### Key Learning Outcome
-
-This feature demonstrated that CSS alone can create dynamic visual effects, but effective results depend on balancing animation, layout constraints, and image composition.
+##### Key Learning Outcome: This feature demonstrated that CSS alone can create dynamic visual effects, but effective results depend on balancing animation, layout constraints, and image composition.
 ---
-# Module 5 — Page Layout + Box Model / Padding Lessons
+### Module 5 — Page Layout + Box Model / Padding Lessons
 
-## What I intended
 **Design goal:** keep text readable inside consistent “cards” while using the About page to demonstrate a **2‑column layout**. 
 
 ---
 
-## Requirements → Where my code shows them
+#### Requirements → Where my code shows them
 
 ### ✅ Padding and/or margins on 3+ elements (aesthetic spacing)
 - **Header padding** creates breathing room: `header { padding: 2rem 1.5rem; }`   
@@ -438,7 +435,7 @@ This feature demonstrated that CSS alone can create dynamic visual effects, but 
 
 ---
 
-## Exact code patterns I kept (the “tricks” that matter)
+## Exact code patterns I kept (the techniques that matter)
 
 ### 1) About page layout scaffold (HTML: wrapper rows + column boxes)
 I grouped each pair of columns into a wrapper row (`.about-layout`). 
@@ -575,7 +572,7 @@ So even if widths look fine, layout can stack when:
 
 ---
 
-## DevTools / Inspector: the “basic” debugging move I should use next time
+## DevTools / Inspector: the debugging move I should use next time
 If columns stack unexpectedly, the fastest checks are:
 
 1. Inspect `.about-image` (or `.about-history`) → confirm `float: left` is applied.   
@@ -593,3 +590,145 @@ If columns stack unexpectedly, the fastest checks are:
 - ✅ Always include a mobile stack fallback.   
 
 ---
+# 📚 3D Carousel (CSS-Only) — Featured Reads
+
+## Overview
+
+This feature implements a **3D rotating carousel** that displays five fictional book titles using **pure HTML and CSS (no JavaScript)**.
+
+The carousel appears on the **Home page** under *Featured Reads*, providing a visual introduction to the types of books explored by the FictionTown Book Club.
+
+---
+
+## 🧠 Design Intent
+
+The carousel is intentionally placed within the page flow:
+
+Welcome → Featured Reads (visual) → Upcoming Highlights → Community
+
+- **Welcome** introduces the club  
+- **Carousel** shows what the club reads  
+- **Highlights** provide structured information  
+- **Community section** adds emotional context  
+
+This approach balances visual interest with readability.
+
+---
+
+## ⚙️ How It Works
+
+### 1. Establishing a 3D Viewing Context
+
+The `.scene` container uses `perspective`:
+
+    .scene {
+      perspective: 1000px;
+    }
+
+- This creates depth
+- Elements farther away appear smaller
+
+---
+
+### 2. Creating a 3D Space
+
+The carousel preserves depth:
+
+    .carousel {
+      transform-style: preserve-3d;
+    }
+
+- Without this, everything would appear flat
+
+---
+
+### 3. Positioning Cards in a Circle
+
+Each card is rotated and pushed outward:
+
+    .card:nth-child(1){ transform: rotateY(0deg) translateZ(300px); }
+    .card:nth-child(2){ transform: rotateY(72deg) translateZ(300px); }
+    .card:nth-child(3){ transform: rotateY(144deg) translateZ(300px); }
+    .card:nth-child(4){ transform: rotateY(216deg) translateZ(300px); }
+    .card:nth-child(5){ transform: rotateY(288deg) translateZ(300px); }
+
+Key concept:
+
+360° ÷ 5 cards = 72° spacing
+
+- `rotateY()` places the card around the circle  
+- `translateZ()` pushes it outward  
+
+This creates a circular 3D arrangement.
+
+---
+
+### 4. Rotating the Carousel
+
+The carousel rotates using animation:
+
+    @keyframes spin {
+      from { transform: translateZ(-300px) rotateY(0deg); }
+      to   { transform: translateZ(-300px) rotateY(360deg); }
+    }
+
+    .carousel {
+      animation: spin 20s linear infinite;
+    }
+
+- The entire structure rotates as one unit  
+- This creates a smooth orbiting effect  
+
+---
+
+## ♿ Accessibility Consideration
+
+Motion can be reduced for users who prefer it:
+
+    @media (prefers-reduced-motion: reduce) {
+      .carousel {
+        animation: none;
+      }
+    }
+
+- This improves accessibility and usability
+
+---
+
+## 🎨 Visual Design Choices
+
+- Soft background (`#faf8f4`) → calm reading aesthetic  
+- Serif font (Georgia) → literary tone  
+- Subtle shadows → gentle depth  
+
+The goal was to keep the effect **clean and readable**, not distracting.
+
+---
+
+## ✅ Constraints & Decisions
+  
+- ✅ CSS-only animation used  
+- ✅ Semantic HTML maintained  
+
+
+---
+
+## 🚀 Key Takeaways
+
+This feature demonstrates:
+
+- CSS 3D transforms (`rotateY`, `translateZ`)
+- Animation with `@keyframes`
+- Depth using `perspective`
+- Structured layout integration
+- Accessibility awareness
+
+---
+
+## 🧩 Reflection
+
+This component reinforces an important idea:
+
+Structure enables creativity.
+
+By organizing the page first, the carousel could be added as a purposeful visual element rather than a distraction.

@@ -168,3 +168,78 @@ footer {
   padding: 1.5rem;
   text-align: center;
 }
+
+/* ===== 3D Carousel (CSS Only) ===== */
+
+.scene {
+  width: 320px;
+  height: 220px;
+  margin: 60px auto;
+  perspective: 1000px;
+  /* creates depth */
+}
+
+.carousel {
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  transform-style: preserve-3d;
+  transform: translateZ(-300px);
+
+  animation: spin 20s linear infinite;
+}
+
+.card {
+  position: absolute;
+  width: 260px;
+  height: 160px;
+  left: 30px;
+  top: 30px;
+
+  background: #faf8f4;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: Georgia, serif;
+  text-align: center;
+  padding: 10px;
+
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Position 5 cards in circle */
+.card:nth-child(1) {
+  transform: rotateY(0deg) translateZ(300px);
+}
+
+.card:nth-child(2) {
+  transform: rotateY(72deg) translateZ(300px);
+}
+
+.card:nth-child(3) {
+  transform: rotateY(144deg) translateZ(300px);
+}
+
+.card:nth-child(4) {
+  transform: rotateY(216deg) translateZ(300px);
+}
+
+.card:nth-child(5) {
+  transform: rotateY(288deg) translateZ(300px);
+}
+
+/* Auto-rotation */
+@keyframes spin {
+  from {
+    transform: translateZ(-300px) rotateY(0deg);
+  }
+
+  to {
+    transform: translateZ(-300px) rotateY(360deg);
+  }
+}
