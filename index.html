@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 
 <head>
@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="styles/styles.css">
 </head>
 
-<body>
+<body class="page-home">
     <!-- Header section introducing the site -->
     <header>
         <h1>FictionTown Book Club</h1>
@@ -18,7 +18,12 @@
             A community of readers based in FictionTown, gathering locally and
             traveling together for literary events across the state and beyond.
         </p>
-
+        <!-- Theme toggle buttons -->
+        <div>
+            <button data-set-theme="light">Light</button>
+            <button data-set-theme="dark">Dark</button>
+            <button data-set-theme="neon">Neon</button>
+        </div>
         <!-- Simple site navigation -->
         <nav>
             <ul>
@@ -102,6 +107,30 @@
             educational purposes.
         </p>
     </footer>
+
+    <script>
+        // ✅ APPLY saved theme when page loads
+        const savedTheme = localStorage.getItem("theme");
+
+        if (savedTheme) {
+            document.documentElement.setAttribute("data-theme", savedTheme);
+        }
+
+        // ✅ BUTTON HANDLING
+        const buttons = document.querySelectorAll('[data-set-theme]');
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                const theme = button.dataset.setTheme;
+
+                document.documentElement.setAttribute('data-theme', theme);
+
+                // ✅ SAVE selection globally
+                localStorage.setItem("theme", theme);
+            });
+        });
+    </script>
+
 </body>
 
 </html>

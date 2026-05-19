@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
   <meta charset="UTF-8">
@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="styles/styles.css">
 </head>
 
-<body>
+<body class="page-about">
 
   <header class="site-header">
     <nav>
@@ -79,6 +79,23 @@
   </main>
 
   <footer class="site-footer"></footer>
+  <script>
+    const savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme) {
+      document.documentElement.setAttribute("data-theme", savedTheme);
+    }
+
+    const buttons = document.querySelectorAll('[data-set-theme]');
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const theme = button.dataset.setTheme;
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem("theme", theme);
+      });
+    });
+  </script>
 
 </body>
 

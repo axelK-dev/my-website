@@ -731,4 +731,96 @@ This component reinforces an important idea:
 
 Structure enables creativity.
 
-By organizing the page first, the carousel could be added as a purposeful visual element rather than a distraction.
+#### By organizing the page first, the carousel could be added as a purposeful visual element rather than a distraction.
+Markdown
+---
+
+#### Theme & Layout System
+
+This project implements a multi-page theming system using **HTML, CSS, and JavaScript**, with a focus on stability and scalability.
+
+---
+
+### 🔹 Structure (HTML)
+
+- Shared layout across all pages (`header`, `main`, `footer`)
+- Page identity via body class:
+
+```html
+<body class="page-about">
+```
+
+### 🔹 Theme System (CSS Variables)
+
+Global styles are controlled with variables:
+```
+
+:root {
+--bg: ...;
+--text: ...;
+--accent: ...;
+}
+[data-theme="dark"] {
+--bg: #121212;
+}
+```
+- One change updates the entire site  
+- Enables light, dark, and neon themes  
+
+---
+
+### 🔹 Theme Persistence (JavaScript)
+
+User theme selection is saved and reused:
+
+
+localStorage.setItem("theme", theme);
+
+On page load:
+
+
+const savedTheme = localStorage.getItem("theme");
+
+- Theme carries across all pages  
+- No re-selection required  
+
+---
+
+### 🔹 Page Variations
+
+Each page can override specific variables:
+
+
+body.page-about {
+--accent: #845ec2;
+}
+
+**Result:**
+
+Global theme + local variation  
+→ consistent system with flexible identity  
+
+---
+
+### 🔹 Design Principles
+
+- Layout and theme are separated  
+- Components remain structurally stable  
+- Themes affect *only* visual properties  
+
+---
+
+### 🔹 Goal
+
+- One global theme system  
+- Page-level customization  
+- No duplication of styles  
+- Easy to adjust without breaking layout  
+
+---
+
+### ✅ Summary
+
+- **HTML** → structure + page identity  
+- **CSS** → layout + theme variables  
+- **JavaScript** → interaction + persistence  
