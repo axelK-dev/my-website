@@ -2,13 +2,18 @@
 <html lang="en" data-theme="light">
 
 
+
 <head>
     <meta charset="UTF-8">
     <title>FictionTown Book Club</title>
-    <meta name="description" content="A fictional community book club based in FictionTown." />
+    <meta name="description" content="A fictional community book club based in FictionTown.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="images/Favicon.svg">
+    <!-- Styles -->
     <link rel="stylesheet" href="styles/styles.css">
 </head>
+
 
 <body class="page-home">
     <!-- Header section introducing the site -->
@@ -18,118 +23,134 @@
             A community of readers based in FictionTown, gathering locally and
             traveling together for literary events across the state and beyond.
         </p>
-        <!-- Theme toggle buttons -->
-        <div>
-            <button data-set-theme="light">Light</button>
-            <button data-set-theme="dark">Dark</button>
-            <button data-set-theme="neon">Neon</button>
-        </div>
-        <!-- Simple site navigation -->
+        <!-- Upgraded site navigation -->
         <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
+            <ul class="navbar">
+
+                <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="events.html">Events & Calendar</a></li>
                 <li><a href="locations.html">Locations</a></li>
                 <li><a href="about.html">About Us</a></li>
+
+                <!-- THEMES DROPDOWN -->
+                <li class="dropdown">
+                    <span class="dropbtn">Themes</span>
+                    <ul class="dropdown-content">
+                        <li><button data-set-theme="light">Light</button></li>
+                        <li><button data-set-theme="dark">Dark</button></li>
+                        <li><button data-set-theme="neon">Neon</button></li>
+                    </ul>
+                </li>
+
             </ul>
         </nav>
-    </header>
 
-    <!-- Main content area -->
-    <main>
-        <!-- Introduction section -->
-        <section>
-            <h2>Welcome</h2>
-            <p>
-                The FictionTown Book Club meets regularly at Oak Street Library and
-                often continues conversations over meals at the Railcar Diner.
-            </p>
-            <p>
-                Throughout the year, members also participate in statewide gatherings
-                and an annual national literary event &mdash; bringing new ideas back
-                to our town.
-            </p>
-        </section>
+        <!-- Main content area -->
+        <main>
+            <!-- Introduction section -->
+            <section>
+                <h2>Welcome</h2>
+                <p>
+                    The FictionTown Book Club meets regularly at Oak Street Library and
+                    often continues conversations over meals at the Railcar Diner.
+                </p>
+                <p>
+                    Throughout the year, members also participate in statewide gatherings
+                    and an annual national literary event &mdash; bringing new ideas back
+                    to our town.
+                </p>
+            </section>
 
-        <section>
-            <h2>Featured Reads</h2>
+            <section>
+                <h2>Featured Reads</h2>
 
-            <div class="scene">
-                <div class="carousel" id="carousel">
+                <div class="scene">
+                    <div class="carousel" id="carousel">
 
-                    <div class="card">📘 The Whispering Library</div>
-                    <div class="card">📗 Clockwork Dreams</div>
-                    <div class="card">📙 The Last Cartographer</div>
-                    <div class="card">📕 Ashes of the Moon Garden</div>
-                    <div class="card">📓 Neon Harbor Nights</div>
+                        <div class="card">📘 The Whispering Library</div>
+                        <div class="card">📗 Clockwork Dreams</div>
+                        <div class="card">📙 The Last Cartographer</div>
+                        <div class="card">📕 Ashes of the Moon Garden</div>
+                        <div class="card">📓 Neon Harbor Nights</div>
 
+                    </div>
                 </div>
-            </div>
 
+                <p>
+                    A glimpse into the stories we've been exploring together.
+                </p>
+            </section>
+
+            <!-- Upcoming highlights section -->
+            <section>
+                <h2>Upcoming Highlights</h2>
+                <ul>
+                    <li>Weekly reading nights at Oak Street Library</li>
+                    <li>Monthly discussion dinners at the Railcar Diner</li>
+                    <li>Seasonal travel to regional and national literary events</li>
+                </ul>
+            </section>
+
+            <!-- Image section -->
+
+            <section>
+                <h2>Our Community</h2>
+
+                <div class="image-frame">
+                    <img src="images\pexels-laukevtravel-11875384.jpg" alt="People gathered at a community meeting"
+                        class="ken-burns-pic">
+                </div>
+
+                <p>
+                    Reading together is just the beginning ☘
+                    the conversations are what bring us back.
+                </p>
+            </section>
+
+        </main>
+
+        <!-- Footer with disclaimer -->
+        <footer>
             <p>
-                A glimpse into the stories we've been exploring together.
+                &copy; 2026 ☘ FictionTown Book Club.
+                This website represents a <em>fictional</em> organization created for
+                educational purposes.
             </p>
-        </section>
+        </footer>
 
-        <!-- Upcoming highlights section -->
-        <section>
-            <h2>Upcoming Highlights</h2>
-            <ul>
-                <li>Weekly reading nights at Oak Street Library</li>
-                <li>Monthly discussion dinners at the Railcar Diner</li>
-                <li>Seasonal travel to regional and national literary events</li>
-            </ul>
-        </section>
+        <script>
+            // --------------------------------------------------
+            // Theme initialization (session only)
+            // --------------------------------------------------
 
-        <!-- Image section -->
+            // Check if a theme was selected during this session
+            const sessionTheme = sessionStorage.getItem("theme");
 
-        <section>
-            <h2>Our Community</h2>
+            // Apply it if it exists
+            if (sessionTheme) {
+                document.documentElement.setAttribute("data-theme", sessionTheme);
+            }
 
-            <div class="image-frame">
-                <img src="images\pexels-laukevtravel-11875384.jpg" alt="People gathered at a community meeting"
-                    class="ken-burns-pic">
-            </div>
+            // --------------------------------------------------
+            // Theme button handling
+            // --------------------------------------------------
 
-            <p>
-                Reading together is just the beginning ☘
-                the conversations are what bring us back.
-            </p>
-        </section>
+            // Find all theme buttons
+            const buttons = document.querySelectorAll('[data-set-theme]');
 
-    </main>
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
 
-    <!-- Footer with disclaimer -->
-    <footer>
-        <p>
-            &copy; 2026 ☘ FictionTown Book Club.
-            This website represents a <em>fictional</em> organization created for
-            educational purposes.
-        </p>
-    </footer>
+                    const theme = button.dataset.setTheme;
 
-    <script>
-        // ✅ APPLY saved theme when page loads
-        const savedTheme = localStorage.getItem("theme");
+                    // Apply selected theme
+                    document.documentElement.setAttribute('data-theme', theme);
 
-        if (savedTheme) {
-            document.documentElement.setAttribute("data-theme", savedTheme);
-        }
-
-        // ✅ BUTTON HANDLING
-        const buttons = document.querySelectorAll('[data-set-theme]');
-
-        buttons.forEach(button => {
-            button.addEventListener('click', () => {
-                const theme = button.dataset.setTheme;
-
-                document.documentElement.setAttribute('data-theme', theme);
-
-                // ✅ SAVE selection globally
-                localStorage.setItem("theme", theme);
+                    // Store it for this session only
+                    sessionStorage.setItem("theme", theme);
+                });
             });
-        });
-    </script>
+        </script>
 
 </body>
 

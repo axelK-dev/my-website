@@ -53,12 +53,16 @@ header {
 
 nav ul {
   list-style: none;
-  padding-left: 0;
   margin: 0;
+  padding: 0;
+  display: flex;
+  /* make it horizontal */
+  gap: 1rem;
 }
 
 nav ul li {
-  margin-bottom: 0.4rem;
+  margin: 0;
+  /* remove vertical spacing */
 }
 
 nav a {
@@ -71,6 +75,23 @@ nav a:hover {
   border-bottom: 0.1rem solid var(--accent);
 }
 
+/* dropdown container */
+.dropdown {
+  position: relative;
+}
+
+/* hidden by default */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background: white;
+  padding: 0.5rem;
+}
+
+/* show when hovering */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 
 /* =====================================
 MAIN LAYOUT
