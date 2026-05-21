@@ -590,7 +590,7 @@ If columns stack unexpectedly, the fastest checks are:
 - ✅ Always include a mobile stack fallback.   
 
 ---
-# 📚 3D Carousel (CSS-Only) — Featured Reads
+# 3D Carousel (CSS-Only) — Featured Reads
 
 ## Overview
 
@@ -600,7 +600,7 @@ The carousel appears on the **Home page** under *Featured Reads*, providing a vi
 
 ---
 
-## 🧠 Design Intent
+## Design Intent
 
 The carousel is intentionally placed within the page flow:
 
@@ -615,7 +615,7 @@ This approach balances visual interest with readability.
 
 ---
 
-## ⚙️ How It Works
+## How It Works
 
 ### 1. Establishing a 3D Viewing Context
 
@@ -681,7 +681,7 @@ The carousel rotates using animation:
 
 ---
 
-## ♿ Accessibility Consideration
+## Accessibility Consideration
 
 Motion can be reduced for users who prefer it:
 
@@ -695,7 +695,7 @@ Motion can be reduced for users who prefer it:
 
 ---
 
-## 🎨 Visual Design Choices
+## Visual Design Choices
 
 - Soft background (`#faf8f4`) → calm reading aesthetic  
 - Serif font (Georgia) → literary tone  
@@ -705,15 +705,15 @@ The goal was to keep the effect **clean and readable**, not distracting.
 
 ---
 
-## ✅ Constraints & Decisions
+## Constraints & Decisions
   
-- ✅ CSS-only animation used  
-- ✅ Semantic HTML maintained  
+- CSS-only animation used  
+- Semantic HTML maintained  
 
 
 ---
 
-## 🚀 Key Takeaways
+## Key Takeaways
 
 This feature demonstrates:
 
@@ -725,7 +725,7 @@ This feature demonstrates:
 
 ---
 
-## 🧩 Reflection
+## Reflection
 
 This component reinforces an important idea:
 
@@ -741,7 +741,7 @@ This project implements a multi-page theming system using **HTML, CSS, and JavaS
 
 ---
 
-### 🔹 Structure (HTML)
+### Structure (HTML)
 
 - Shared layout across all pages (`header`, `main`, `footer`)
 - Page identity via body class:
@@ -750,7 +750,7 @@ This project implements a multi-page theming system using **HTML, CSS, and JavaS
 <body class="page-about">
 ```
 
-### 🔹 Theme System (CSS Variables)
+### Theme System (CSS Variables)
 
 Global styles are controlled with variables:
 ```
@@ -769,7 +769,7 @@ Global styles are controlled with variables:
 
 ---
 
-### 🔹 Theme Persistence (JavaScript)
+### Theme Persistence (JavaScript)
 
 User theme selection is saved and reused:
 
@@ -786,7 +786,7 @@ const savedTheme = localStorage.getItem("theme");
 
 ---
 
-### 🔹 Page Variations
+### Page Variations
 
 Each page can override specific variables:
 
@@ -802,7 +802,7 @@ Global theme + local variation
 
 ---
 
-### 🔹 Design Principles
+### Design Principles
 
 - Layout and theme are separated  
 - Components remain structurally stable  
@@ -810,7 +810,7 @@ Global theme + local variation
 
 ---
 
-### 🔹 Goal
+### Goal
 
 - One global theme system  
 - Page-level customization  
@@ -819,8 +819,128 @@ Global theme + local variation
 
 ---
 
-### ✅ Summary
+### Summary
 
 - **HTML** → structure + page identity  
 - **CSS** → layout + theme variables  
 - **JavaScript** → interaction + persistence  
+# Global Navigation + Theme System
+
+## Overview
+
+A multi-page site with:
+- Global navigation bar (same on every page)
+- Theme switching (Light / Dark / Neon)
+- Default theme: Light
+- Theme persists across pages (session only)
+- Hover-based dropdown menu
+
+---
+
+## Navigation (Use on EVERY page)
+
+```html
+<nav>
+  <ul class="navbar">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="events.html">Events & Calendar</a></li>
+    <li><a href="locations.html">Locations</a></li>
+    <li><a href="about.html">About Us</a></li>
+
+    <li class="dropdown">
+      <span class="dropbtn">Themes</span>
+      <ul class="dropdown-content">
+        <li><button data-set-theme="light">Light</button></li>
+        <li><button data-set-theme="dark">Dark</button></li>
+        <li><button data-set-theme="neon">Neon</button></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+```
+
+---
+
+## CSS (Core Behavior)
+
+```css
+.navbar {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  list-style: none;
+  background: white;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+```
+
+---
+
+## JavaScript (Theme Handling)
+
+```html
+<script>
+const theme = sessionStorage.getItem("theme");
+
+if (theme) {
+  document.documentElement.setAttribute("data-theme", theme);
+}
+
+document.querySelectorAll('[data-set-theme]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const t = btn.dataset.setTheme;
+    document.documentElement.setAttribute("data-theme", t);
+    sessionStorage.setItem("theme", t);
+  });
+});
+</script>
+```
+
+---
+
+## ✅ Rules
+
+- Theme controls must use `<button>`
+- Do not remove any theme options
+- Nav + script must be identical on every page
+
+---
+
+## 🔁 Behavior
+
+```
+Page load → Light (default)
+
+User clicks theme →
+  applies immediately
+  saved for session
+
+Navigate pages →
+  same theme persists
+
+Close browser →
+  resets to Light
+```
+
+---
+
+## ✅ System Summary
+
+- Consistent navigation structure
+- Hover-driven dropdown interaction
+- Explicit user-controlled themes
+- Session-based persistence (no permanent override)
