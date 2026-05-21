@@ -44,113 +44,120 @@
 
             </ul>
         </nav>
-
-        <!-- Main content area -->
-        <main>
-            <!-- Introduction section -->
-            <section>
-                <h2>Welcome</h2>
-                <p>
-                    The FictionTown Book Club meets regularly at Oak Street Library and
-                    often continues conversations over meals at the Railcar Diner.
-                </p>
-                <p>
-                    Throughout the year, members also participate in statewide gatherings
-                    and an annual national literary event &mdash; bringing new ideas back
-                    to our town.
-                </p>
-            </section>
-
-            <section>
-                <h2>Featured Reads</h2>
-
-                <div class="scene">
-                    <div class="carousel" id="carousel">
-
-                        <div class="card">📘 The Whispering Library</div>
-                        <div class="card">📗 Clockwork Dreams</div>
-                        <div class="card">📙 The Last Cartographer</div>
-                        <div class="card">📕 Ashes of the Moon Garden</div>
-                        <div class="card">📓 Neon Harbor Nights</div>
-
-                    </div>
-                </div>
-
-                <p>
-                    A glimpse into the stories we've been exploring together.
-                </p>
-            </section>
-
-            <!-- Upcoming highlights section -->
-            <section>
-                <h2>Upcoming Highlights</h2>
-                <ul>
-                    <li>Weekly reading nights at Oak Street Library</li>
-                    <li>Monthly discussion dinners at the Railcar Diner</li>
-                    <li>Seasonal travel to regional and national literary events</li>
-                </ul>
-            </section>
-
-            <!-- Image section -->
-
-            <section>
-                <h2>Our Community</h2>
-
-                <div class="image-frame">
-                    <img src="images\pexels-laukevtravel-11875384.jpg" alt="People gathered at a community meeting"
-                        class="ken-burns-pic">
-                </div>
-
-                <p>
-                    Reading together is just the beginning ☘
-                    the conversations are what bring us back.
-                </p>
-            </section>
-
-        </main>
-
-        <!-- Footer with disclaimer -->
-        <footer>
+    </header>
+    <!-- Main content area -->
+    <main>
+        <!-- Introduction section -->
+        <section>
+            <h2>Welcome</h2>
             <p>
-                &copy; 2026 ☘ FictionTown Book Club.
-                This website represents a <em>fictional</em> organization created for
-                educational purposes.
+                The FictionTown Book Club meets regularly at Oak Street Library and
+                often continues conversations over meals at the Railcar Diner.
             </p>
-        </footer>
+            <a href="#highlights">Jump to Upcoming Highlights</a>
+            <p>
+                Throughout the year, members also participate in statewide gatherings
+                and an annual national literary event &mdash; bringing new ideas back
+                to our town.
+            </p>
+        </section>
 
-        <script>
-            // --------------------------------------------------
-            // Theme initialization (session only)
-            // --------------------------------------------------
+        <section>
+            <h2>Featured Reads</h2>
 
-            // Check if a theme was selected during this session
-            const sessionTheme = sessionStorage.getItem("theme");
+            <div class="scene">
+                <div class="carousel" id="carousel">
 
-            // Apply it if it exists
-            if (sessionTheme) {
-                document.documentElement.setAttribute("data-theme", sessionTheme);
-            }
+                    <div class="card">📘 The Whispering Library</div>
+                    <div class="card">📗 Clockwork Dreams</div>
+                    <div class="card">📙 The Last Cartographer</div>
+                    <div class="card">📕 Ashes of the Moon Garden</div>
+                    <div class="card">📓 Neon Harbor Nights</div>
 
-            // --------------------------------------------------
-            // Theme button handling
-            // --------------------------------------------------
+                </div>
+            </div>
 
-            // Find all theme buttons
-            const buttons = document.querySelectorAll('[data-set-theme]');
+            <p>
+                A glimpse into the stories we've been exploring together.
+            </p>
+        </section>
 
-            buttons.forEach(button => {
-                button.addEventListener('click', () => {
+        <!-- Upcoming highlights section -->
+        <section id="highlights">
+            <h2>Upcoming Highlights</h2>
+            <ul>
+                <li>Weekly reading nights at Oak Street Library</li>
+                <li>Monthly discussion dinners at the Railcar Diner</li>
+                <li>Seasonal travel to regional and national literary events</li>
+            </ul>
+        </section>
 
-                    const theme = button.dataset.setTheme;
+        <!-- Image section -->
 
-                    // Apply selected theme
-                    document.documentElement.setAttribute('data-theme', theme);
+        <section>
+            <h2>Our Community</h2>
 
-                    // Store it for this session only
-                    sessionStorage.setItem("theme", theme);
-                });
+            <div class="image-frame">
+                <img src="images\pexels-laukevtravel-11875384.jpg" alt="People gathered at a community meeting"
+                    class="ken-burns-pic">
+            </div>
+
+            <p>
+                Reading together is just the beginning ☘
+                the conversations are what bring us back.
+            </p>
+        </section>
+
+    </main>
+
+    <!-- Footer with disclaimer -->
+    <footer>
+        <p>
+            &copy; 2026 ☘ FictionTown Book Club.
+            This website represents a <em>fictional</em> organization created for
+            educational purposes.
+        </p>
+        <p>
+            Visit our favorite bookstore:
+            <a href="https://www.powells.com" target="_blank">
+                Powell's Books
+            </a>
+        </p>
+    </footer>
+
+    <script>
+        // --------------------------------------------------
+        // Theme initialization (session only)
+        // --------------------------------------------------
+
+        // Check if a theme was selected during this session
+        const sessionTheme = sessionStorage.getItem("theme");
+
+        // Apply it if it exists
+        if (sessionTheme) {
+            document.documentElement.setAttribute("data-theme", sessionTheme);
+        }
+
+        // --------------------------------------------------
+        // Theme button handling
+        // --------------------------------------------------
+
+        // Find all theme buttons
+        const buttons = document.querySelectorAll('[data-set-theme]');
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+
+                const theme = button.dataset.setTheme;
+
+                // Apply selected theme
+                document.documentElement.setAttribute('data-theme', theme);
+
+                // Store it for this session only
+                sessionStorage.setItem("theme", theme);
             });
-        </script>
+        });
+    </script>
 
 </body>
 

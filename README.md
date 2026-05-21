@@ -912,7 +912,7 @@ document.querySelectorAll('[data-set-theme]').forEach(btn => {
 
 ---
 
-## ✅ Rules
+## Rules
 
 - Theme controls must use `<button>`
 - Do not remove any theme options
@@ -920,7 +920,7 @@ document.querySelectorAll('[data-set-theme]').forEach(btn => {
 
 ---
 
-## 🔁 Behavior
+## Behavior
 
 ```
 Page load → Light (default)
@@ -938,9 +938,22 @@ Close browser →
 
 ---
 
-## ✅ System Summary
+## System Summary
 
 - Consistent navigation structure
 - Hover-driven dropdown interaction
 - Explicit user-controlled themes
 - Session-based persistence (no permanent override)
+## Responsive Design Improvements (Media Queries)
+
+To improve usability across different device sizes, two media queries were implemented:
+
+### Tablet Breakpoint
+```css
+@media (max-width: 768px)
+```
+and
+### Mobile Breakpoint
+```
+@media (max-width: 480px)
+```

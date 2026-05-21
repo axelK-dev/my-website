@@ -189,8 +189,36 @@ ABOUT PAGE LAYOUT
     width: 100%;
     margin-right: 0;
   }
+
 }
 
+/* MOBILE (NAV + CAROUSEL FIX) */
+@media (max-width: 480px) {
+
+  /* Navigation stacks vertically */
+  nav ul {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  header {
+    text-align: center;
+  }
+
+  /* Carousel scales down */
+  .scene {
+    width: 90%;
+    height: 180px;
+  }
+
+  .card {
+    width: 80%;
+    height: 120px;
+    left: 10%;
+    top: 30px;
+  }
+
+}
 
 /* =====================================
 FOOTER
