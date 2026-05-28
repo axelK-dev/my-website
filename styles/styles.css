@@ -47,8 +47,7 @@ body {
 main {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem 0;
-  /* REMOVE SIDE PADDING */
+  padding: 2rem 1.5;
   /* REQUIRED: ensures pages reach full screen height */
   min-height: 100vh;
 }
