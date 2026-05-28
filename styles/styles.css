@@ -47,7 +47,8 @@ body {
 main {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem 1.5rem;
+  padding: 2rem 0;
+  /* REMOVE SIDE PADDING */
   /* REQUIRED: ensures pages reach full screen height */
   min-height: 100vh;
 }
@@ -139,13 +140,8 @@ CONTENT BOXES
 /* GRID: flexible columns that expand on large screens */
 .events-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-}
-
-/* FIX: prevent content from stretching unevenly inside grid */
-.events>* {
-  width: 100%;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
 }
 
 /* =====================================
@@ -186,12 +182,13 @@ KEN BURNS ANIMATION
 
 .about-layout {
   display: flex;
-  gap: 2%;
-  margin-bottom: 2rem;
+  flex-wrap: wrap;   /* allow proper wrapping control */
+  gap: 2rem;
 }
 
-.about-layout>div {
-  width: 49%;
+
+.about-layout > div {
+  flex: 0 0 calc(50% - 1rem);
 }
 
 /* =====================================
@@ -290,7 +287,7 @@ MEDIA QUERIES (RESPONSIVENESS)
 }
 
 /* TABLET BREAKPOINT */
-@media (max-width: 900px) {
+@media (max-width: 480px) {
   .about-layout {
     flex-direction: column;
   }
