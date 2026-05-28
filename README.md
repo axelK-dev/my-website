@@ -572,7 +572,7 @@ So even if widths look fine, layout can stack when:
 
 ---
 
-## DevTools / Inspector: the debugging move I should use next time
+## DevTools / Inspector: the debugging move to use every time
 If columns stack unexpectedly, the fastest checks are:
 
 1. Inspect `.about-image` (or `.about-history`) → confirm `float: left` is applied.   
@@ -590,7 +590,7 @@ If columns stack unexpectedly, the fastest checks are:
 - ✅ Always include a mobile stack fallback.   
 
 ---
-# 3D Carousel (CSS-Only) — Featured Reads
+## 3D Carousel (CSS-Only) — Featured Reads
 
 ## Overview
 
@@ -731,8 +731,8 @@ This component reinforces an important idea:
 
 Structure enables creativity.
 
-#### By organizing the page first, the carousel could be added as a purposeful visual element rather than a distraction.
-Markdown
+###### By organizing the page first, the carousel could be added as a purposeful visual element rather than a distraction.
+
 ---
 
 #### Theme & Layout System
@@ -824,9 +824,9 @@ Global theme + local variation
 - **HTML** → structure + page identity  
 - **CSS** → layout + theme variables  
 - **JavaScript** → interaction + persistence  
-# Global Navigation + Theme System
+### Global Navigation + Theme System
 
-## Overview
+#### Overview
 
 A multi-page site with:
 - Global navigation bar (same on every page)
@@ -957,3 +957,173 @@ and
 ```
 @media (max-width: 480px)
 ```
+## Module 7 — Layout + Responsiveness Updates
+
+### Grid (Requirement)
+Added grid layout for event cards:
+
+```css
+.events {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+```
+
+Responsive stack:
+
+```css
+@media (max-width: 768px) {
+  .events {
+    grid-template-columns: 1fr;
+  }
+}
+```
+
+---
+
+### Flexbox (Existing Structure)
+Used for layout control:
+
+```css
+nav ul { display: flex; }
+.about-layout { display: flex; }
+```
+
+---
+
+### Breakpoints (3+ Required)
+
+```css
+/* 900px → collapse 2-column layout */
+@media (max-width: 900px) {
+  .about-layout { flex-direction: column; }
+}
+
+/* 768px → stack grid */
+@media (max-width: 768px) {
+  .events { grid-template-columns: 1fr; }
+}
+
+/* 480px → mobile layout + nav fix */
+@media (max-width: 480px) {
+  nav ul { flex-direction: column; }
+}
+```
+
+---
+
+### Mobile Dropdown Fix (Usability Issue)
+
+Problem: absolutely positioned dropdown breaks in stacked nav
+
+Fix:
+
+```css
+.dropdown-content {
+  position: static;
+  display: none;
+  padding-left: 1rem;
+}
+
+.dropdown:hover .dropdown-content,
+.dropdown:focus-within .dropdown-content {
+  display: block;
+}
+```
+
+---
+
+### Viewport Height (Requirement)
+
+```css
+main {
+  min-height: 100vh;
+}
+```
+
+Ensures all pages fill screen without adding extra content.
+
+---
+
+### Key Fixes
+
+- Converted dropdown from overlay → inline (mobile)
+- Added grid without changing layout structure
+- Introduced targeted breakpoints (900 / 768 / 480)
+- Fixed CSS syntax issues (missing braces, invalid rules)
+- Added purpose-based comments
+
+---
+
+### Result
+
+- Flex + Grid both implemented
+- Layout stable across device sizes
+- Navigation usable on mobile
+- Pages meet viewport height requirement
+- Design preserved (no structural rewrite)
+## Final Layout Fixes
+
+### Grid Structure Fix
+
+Initially, applying `display: grid` to `.events` caused the `<h2>` heading to be treated as a grid item, which broke layout alignment and constrained the event cards.
+
+This was corrected by introducing a wrapper:
+
+```html
+<section class="events">
+  <h2>Upcoming Events</h2>
+
+  <div class="events-grid">
+    <article class="event content-box">...</article>
+    <article class="event content-box">...</article>
+  </div>
+</section>
+```
+
+And moving the grid styling to:
+
+```css
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+```
+
+This ensures only the event cards participate in the grid.
+
+---
+
+### Card Consistency Fix
+
+The second event initially lacked the card styling.
+
+```html
+<article class="event">
+```
+
+was corrected to:
+
+```html
+<article class="event content-box">
+```
+
+This applies consistent padding, borders, and shadows across both items.
+
+---
+
+### Responsive Behavior
+
+Media queries were used to stabilize layout behavior across screen sizes and ensure the design remained usable from desktop down to mobile widths. These adjustments helped prevent layout breakage and maintain consistent spacing and alignment.
+
+---
+
+### Result
+
+- Grid requirement satisfied without breaking layout
+- Heading removed from grid flow
+- Event cards align cleanly
+- Images display at correct proportions across screen sizes
+- Consistent card styling applied

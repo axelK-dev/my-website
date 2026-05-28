@@ -1,86 +1,103 @@
 /* =====================================
-THEME VARIABLES
+GLOBAL RESET & THEME VARIABLES
 ===================================== */
+
+/* GLOBAL RESET: ensures consistent box sizing */
 * {
   box-sizing: border-box;
-  /* ✅ keeps widths stable */
 }
 
+/* DEFAULT LIGHT THEME */
 :root {
   --bg: linear-gradient(to bottom, #f5f2ec 0%, #e8e1d6 50%, #ddd4c6 100%);
   --text: #222222;
   --accent: #3b7d4c;
 }
 
+/* DARK THEME */
 [data-theme="dark"] {
   --bg: #121212;
   --text: #f5f5f5;
   --accent: lightblue;
 }
 
+/* NEON THEME */
 [data-theme="neon"] {
   --bg: #0b0b1a;
   --text: #39ff14;
   --accent: #39ff14;
 }
 
-
 /* =====================================
 BASE PAGE STYLES
 ===================================== */
 
+/* BASE PAGE STYLE */
 body {
   font-family: Arial, sans-serif;
   font-size: 1rem;
   line-height: 1.6;
-
   color: var(--text);
   background: var(--bg);
-
   margin: 0;
   padding: 0;
 }
 
+/* ENSURE FULL VIEWPORT HEIGHT */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  /* REQUIRED: ensures pages reach full screen height */
+  min-height: 100vh;
+}
 
-/* =====================================
-HEADER & NAV
-===================================== */
+/* HEADER & NAVIGATION (FLEXBOX) — creates horizontal navigation layout */
 
+/* HEADER CONTAINER */
 header {
   padding: 2rem 1.5rem;
   border-bottom: 0.2rem solid var(--accent);
 }
 
+/* FLEXBOX: creates horizontal navigation layout and controls spacing */
 nav ul {
   list-style: none;
   margin: 0;
   padding: 0;
+
   display: flex;
-  /* make it horizontal */
   gap: 1rem;
 }
 
+/* REMOVE DEFAULT LI SPACING */
 nav ul li {
   margin: 0;
-  /* remove vertical spacing */
 }
 
+/* NAV LINKS */
 nav a {
   text-decoration: none;
   color: var(--text);
 }
 
+/* HOVER STATE */
 nav a:hover {
   color: var(--accent);
   border-bottom: 0.1rem solid var(--accent);
 }
 
-/* dropdown container */
+/* =====================================
+DROPDOWN MENU (DESKTOP)
+===================================== */
+
+/* PARENT CONTAINER */
 .dropdown {
   position: relative;
 }
 
-/* hidden by default */
+/* DROPDOWN MENU: hidden by default, shown on hover of parent */
+/* HIDDEN MENU */
 .dropdown-content {
   display: none;
   position: absolute;
@@ -88,26 +105,16 @@ nav a:hover {
   padding: 0.5rem;
 }
 
-/* show when hovering */
+/* SHOW ON HOVER */
 .dropdown:hover .dropdown-content {
   display: block;
 }
 
 /* =====================================
-MAIN LAYOUT
-===================================== */
-
-main {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 2rem 1.5rem;
-}
-
-
-/* =====================================
 CONTENT BOXES
 ===================================== */
 
+/* CONTENT CARD STYLE */
 .content-box {
   background-color: #ffffff;
   padding: 1.5rem;
@@ -115,17 +122,30 @@ CONTENT BOXES
   border: 0.1rem solid #e3e1db;
   border-radius: 0.4rem;
 
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7),
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
     0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
-/* ✅ THESE MUST BE OUTSIDE */
+/* THEME VARIANTS */
 [data-theme="dark"] .content-box {
   background-color: #1e1e1e;
 }
 
 [data-theme="neon"] .content-box {
   background-color: #141428;
+}
+
+/* GRID: flexible columns that expand on large screens */
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+/* FIX: prevent content from stretching unevenly inside grid */
+.events>* {
+  width: 100%;
 }
 
 /* =====================================
@@ -143,7 +163,6 @@ IMAGE SYSTEM
   height: 100%;
   object-fit: cover;
 }
-
 
 /* =====================================
 KEN BURNS ANIMATION
@@ -163,10 +182,7 @@ KEN BURNS ANIMATION
   }
 }
 
-
-/* =====================================
-ABOUT PAGE LAYOUT
-===================================== */
+/* ABOUT PAGE LAYOUT (FLEXBOX) — creates two-column content layout */
 
 .about-layout {
   display: flex;
@@ -177,58 +193,6 @@ ABOUT PAGE LAYOUT
 .about-layout>div {
   width: 49%;
 }
-
-/* MOBILE */
-@media (max-width: 768px) {
-
-  .about-image,
-  .about-mission,
-  .about-history,
-  .about-values {
-    float: none;
-    width: 100%;
-    margin-right: 0;
-  }
-
-}
-
-/* MOBILE (NAV + CAROUSEL FIX) */
-@media (max-width: 480px) {
-
-  /* Navigation stacks vertically */
-  nav ul {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  header {
-    text-align: center;
-  }
-
-  /* Carousel scales down */
-  .scene {
-    width: 90%;
-    height: 180px;
-  }
-
-  .card {
-    width: 80%;
-    height: 120px;
-    left: 10%;
-    top: 30px;
-  }
-
-}
-
-/* =====================================
-FOOTER
-===================================== */
-
-footer {
-  padding: 1.5rem;
-  text-align: center;
-}
-
 
 /* =====================================
 CAROUSEL
@@ -259,11 +223,8 @@ CAROUSEL
   left: 30px;
   top: 30px;
 
-  /* ✅ IMPORTANT: do NOT use var(--bg) here */
   background: #ffffff;
-
   border: 2px solid var(--accent);
-
   border-radius: 10px;
 
   display: flex;
@@ -277,19 +238,17 @@ CAROUSEL
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* DARK cards */
+/* THEME CARDS */
 [data-theme="dark"] .card {
   background: #1e1e1e;
 }
 
-/* NEON cards */
 [data-theme="neon"] .card {
   background: #141428;
   box-shadow: 0 0 15px var(--accent);
 }
 
-
-/* POSITIONING */
+/* CARD POSITIONS */
 .card:nth-child(1) {
   transform: rotateY(0deg) translateZ(300px);
 }
@@ -310,7 +269,6 @@ CAROUSEL
   transform: rotateY(288deg) translateZ(300px);
 }
 
-/* SPIN */
 @keyframes spin {
   from {
     transform: translateZ(-300px) rotateY(0deg);
@@ -322,28 +280,59 @@ CAROUSEL
 }
 
 /* =====================================
-PAGE-SPECIFIC HEADING COLOR
+MEDIA QUERIES (RESPONSIVENESS)
 ===================================== */
-
-body.page-about h2 {
-  color: var(--accent);
+/* DESKTOP BREAKPOINT increases main content width for larger screens */
+@media (min-width: 850px) {
+  main {
+    max-width: 1200px;
+  }
 }
 
-/* =====================================
-PAGE-SPECIFIC ACCENT VARIATIONS
-===================================== */
+/* TABLET BREAKPOINT */
+@media (max-width: 900px) {
+  .about-layout {
+    flex-direction: column;
+  }
 
-/* ABOUT — warmer tone */
-body.page-about {
-  --accent: #845ec2;
+  .about-layout>div {
+    width: 100%;
+  }
 }
 
-/* EVENTS — brighter tone */
-body.page-events {
-  --accent: #00c2a8;
-}
+/* MOBILE BREAKPOINT */
+@media (max-width: 480px) {
 
-/* LOCATIONS — earthy tone */
-body.page-locations {
-  --accent: #c34a36;
+  /* NAV STACK */
+  nav ul {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  header {
+    text-align: center;
+  }
+
+  /* MOBILE FIX: converts dropdown to inline flow so it stays accessible in stacked nav */
+  .dropdown-content {
+    position: static;
+    display: none;
+    padding-left: 1rem;
+  }
+
+  .dropdown:hover .dropdown-content,
+  .dropdown:focus-within .dropdown-content {
+    display: block;
+  }
+
+  /* IMAGE SCALE */
+  .image-frame {
+    height: 200px;
+  }
+
+  /* CAROUSEL SCALE */
+  .scene {
+    width: 90%;
+    height: 180px;
+  }
 }
