@@ -60,6 +60,16 @@ header {
   border-bottom: 0.2rem solid var(--accent);
 }
 
+footer {
+  padding: 2rem 1.5rem;
+  border-top: 0.2rem solid var(--accent);
+  text-align: center;
+}
+
+main>section:last-of-type>p:last-of-type {
+  text-align: center;
+}
+
 /* FLEXBOX: creates horizontal navigation layout and controls spacing */
 nav ul {
   list-style: none;
@@ -68,6 +78,7 @@ nav ul {
 
   display: flex;
   gap: 1rem;
+  justify-content: center;
 }
 
 /* REMOVE DEFAULT LI SPACING */
@@ -85,6 +96,40 @@ nav a {
 nav a:hover {
   color: var(--accent);
   border-bottom: 0.1rem solid var(--accent);
+}
+
+/* Google Font: Montserrat */
+h1,
+h2 {
+  font-family: "Montserrat", sans-serif;
+}
+
+/* =====================================
+H1 ICON (FONT AWESOME)
+===================================== */
+
+
+h1 i {
+  margin-right: 10px;
+  color: var(--accent);
+  font-size: 1.8rem;
+  /* adjust size here */
+}
+
+header {
+  text-align: center;
+}
+
+h2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+h2 i {
+  color: var(--accent);
+  font-size: 1.4rem;
 }
 
 /* =====================================
@@ -181,12 +226,13 @@ KEN BURNS ANIMATION
 
 .about-layout {
   display: flex;
-  flex-wrap: wrap;   /* allow proper wrapping control */
+  flex-wrap: wrap;
+  /* allow proper wrapping control */
   gap: 2rem;
 }
 
 
-.about-layout > div {
+.about-layout>div {
   flex: 0 0 calc(50% - 1rem);
 }
 

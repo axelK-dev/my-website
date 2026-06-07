@@ -1127,3 +1127,123 @@ Media queries were used to stabilize layout behavior across screen sizes and ens
 - Event cards align cleanly
 - Images display at correct proportions across screen sizes
 - Consistent card styling applied
+### UI Improvements & Peer Feedback Implementation
+
+#### Centered Footer (Xadrian’s Suggestion)
+The footer layout was updated to improve visual balance and alignment with the page structure.  
+- The footer content is now centered using CSS (`text-align: center`).
+- Padding and consistent spacing were added to match the header and main content areas.
+- A top border was introduced to clearly separate the footer from the main content.
+
+This change improves readability and creates a more cohesive layout across the page.
+
+---
+
+#### Footer on Each Page (Brandon’s Suggestion)
+A consistent footer was implemented across all pages of the site to provide a unified user experience.
+
+- A simplified footer was added to secondary pages (`events.html`, `locations.html`, `about.html`).
+- The homepage retains a more detailed footer with additional informational content.
+- All footers share the same styling (`.site-footer`) to maintain consistency.
+
+This ensures all pages include clear site identity and navigation context.
+
+---
+
+### Favicon Implementation
+A custom favicon was added to enhance branding and improve browser tab recognition.
+
+- A Font Awesome icon (`book-open-reader`) was exported as an SVG file and used for the favicon.
+- The favicon is linked in each page’s `<head>` section:
+
+```
+<link rel="icon" href="images/Favicon.svg">
+```
+#### Adding Google Fonts 
+
+Google Fonts allows custom fonts to be used on a website by loading them from Google's servers and applying them through CSS.
+
+You only need two steps:
+1) Add the font link in HTML
+2) Use font-family in CSS
+
+---
+
+Add this to the <head> of every HTML page:
+```
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+```
+Make sure your stylesheet is also linked:
+```
+<link rel="stylesheet" href="styles.css">
+```
+---
+
+Apply fonts in your CSS file:
+
+body {
+  font-family: "Montserrat", sans-serif;
+}
+
+h1 {
+  font-family: "Audiowide", sans-serif;
+}
+
+h2 {
+  font-family: "Syncopate", sans-serif;
+}
+
+---
+
+Optional: control thickness (weight)
+
+h1 {
+  font-weight: 700;
+}
+
+h2 {
+  font-weight: 400;
+}
+
+---
+
+IMPORTANT:
+
+Google may show something like this:
+
+.montserrat-<uniquifier> {
+  font-family: "Montserrat", sans-serif;
+  font-weight: <weight>;
+}
+
+Ignore it.
+
+It is only a template. Do not copy it.
+
+Instead, always apply fonts directly to elements like h1, h2, or body.
+
+---
+
+Rules:
+
+- Font names must match exactly ("Montserrat", etc.)
+- Always include a fallback (sans-serif, serif)
+- Fonts are applied in CSS, not HTML
+- One stylesheet controls the whole site
+
+---
+
+Working example:
+
+```
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+```
+```
+h1, h2 {
+  font-family: "Montserrat", sans-serif;
+}
+```
