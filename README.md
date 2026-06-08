@@ -412,23 +412,23 @@ Balancing layout, motion, and cropping made troubleshooting difficult.
 
 #### Requirements → Where my code shows them
 
-### ✅ Padding and/or margins on 3+ elements (aesthetic spacing)
+###  Padding and/or margins on 3+ elements (aesthetic spacing)
 - **Header padding** creates breathing room: `header { padding: 2rem 1.5rem; }`   
 - **Main padding** creates gutters: `main { padding: 2rem 1.5rem; }`   
 - **Card padding + spacing**: `.content-box { padding: 1.5rem; margin-bottom: 2rem; }`   
 - **Row spacing**: `.about-layout { margin-bottom: 2rem; }`   
 
-### ✅ Borders on at least one element
+###  Borders on at least one element
 - Borders applied to every card for clear separation:
   - `.content-box { border: 0.1rem solid #e3e1db; }`   
 
-### ✅ Background gradient (doesn’t harm readability)
+###  Background gradient (doesn’t harm readability)
 - Background gradient is applied to the whole page:
   - `body { background: linear-gradient(...); }`   
 - Readability stays high because text sits on white `.content-box` cards:
   - `.content-box { background-color: #ffffff; }`   
 
-### ✅ 2nd page uses a 2‑column layout
+###  2nd page uses a 2‑column layout
 - About page uses **two separate float-based 2‑column rows**:
   - Row 1: `.about-image` + `.about-mission`
   - Row 2: `.about-history` + `.about-values`   
@@ -583,11 +583,11 @@ If columns stack unexpectedly, the fastest checks are:
 ---
 
 ## Future checklist (what I should remember)
-- ✅ Always group columns into row wrappers (`.about-layout`).   
-- ✅ Floats need: `float + width + gap`, plus a clear (`overflow: hidden`).   
-- ✅ Container width matters (`main max-width`).   
-- ✅ Padding/border are part of layout reality (they can cause stacking).   
-- ✅ Always include a mobile stack fallback.   
+-  Always group columns into row wrappers (`.about-layout`).   
+-  Floats need: `float + width + gap`, plus a clear (`overflow: hidden`).   
+-  Container width matters (`main max-width`).   
+-  Padding/border are part of layout reality (they can cause stacking).   
+-  Always include a mobile stack fallback.   
 
 ---
 ## 3D Carousel (CSS-Only) — Featured Reads
@@ -709,8 +709,6 @@ The goal was to keep the effect **clean and readable**, not distracting.
   
 - CSS-only animation used  
 - Semantic HTML maintained  
-
-
 ---
 
 ## Key Takeaways
@@ -725,7 +723,7 @@ This feature demonstrates:
 
 ---
 
-## Reflection
+#### Reflection
 
 This component reinforces an important idea:
 
@@ -741,7 +739,7 @@ This project implements a multi-page theming system using **HTML, CSS, and JavaS
 
 ---
 
-### Structure (HTML)
+#### Structure (HTML)
 
 - Shared layout across all pages (`header`, `main`, `footer`)
 - Page identity via body class:
@@ -786,7 +784,7 @@ const savedTheme = localStorage.getItem("theme");
 
 ---
 
-### Page Variations
+#### Page Variations
 
 Each page can override specific variables:
 
@@ -802,7 +800,7 @@ Global theme + local variation
 
 ---
 
-### Design Principles
+#### Design Principles
 
 - Layout and theme are separated  
 - Components remain structurally stable  
@@ -810,7 +808,7 @@ Global theme + local variation
 
 ---
 
-### Goal
+#### Goal
 
 - One global theme system  
 - Page-level customization  
@@ -819,7 +817,7 @@ Global theme + local variation
 
 ---
 
-### Summary
+#### Summary
 
 - **HTML** → structure + page identity  
 - **CSS** → layout + theme variables  
@@ -837,7 +835,7 @@ A multi-page site with:
 
 ---
 
-## Navigation (Use on EVERY page)
+#### Navigation (Use on EVERY page)
 
 ```html
 <nav>
@@ -861,7 +859,7 @@ A multi-page site with:
 
 ---
 
-## CSS (Core Behavior)
+#### CSS (Core Behavior)
 
 ```css
 .navbar {
@@ -890,7 +888,7 @@ A multi-page site with:
 
 ---
 
-## JavaScript (Theme Handling)
+#### JavaScript (Theme Handling)
 
 ```html
 <script>
@@ -912,7 +910,7 @@ document.querySelectorAll('[data-set-theme]').forEach(btn => {
 
 ---
 
-## Rules
+### Rules
 
 - Theme controls must use `<button>`
 - Do not remove any theme options
@@ -920,7 +918,7 @@ document.querySelectorAll('[data-set-theme]').forEach(btn => {
 
 ---
 
-## Behavior
+### Behavior
 
 ```
 Page load → Light (default)
@@ -938,28 +936,29 @@ Close browser →
 
 ---
 
-## System Summary
+#### System Summary
 
 - Consistent navigation structure
 - Hover-driven dropdown interaction
 - Explicit user-controlled themes
 - Session-based persistence (no permanent override)
-## Responsive Design Improvements (Media Queries)
+---
+### Responsive Design Improvements (Media Queries)
 
 To improve usability across different device sizes, two media queries were implemented:
 
-### Tablet Breakpoint
+#### Tablet Breakpoint
 ```css
 @media (max-width: 768px)
 ```
 and
-### Mobile Breakpoint
+#### Mobile Breakpoint
 ```
 @media (max-width: 480px)
 ```
-## Module 7 — Layout + Responsiveness Updates
+### Module 7 — Layout + Responsiveness Updates
 
-### Grid (Requirement)
+#### Grid (Requirement)
 Added grid layout for event cards:
 
 ```css
@@ -982,7 +981,7 @@ Responsive stack:
 
 ---
 
-### Flexbox (Existing Structure)
+#### Flexbox (Existing Structure)
 Used for layout control:
 
 ```css
@@ -992,7 +991,7 @@ nav ul { display: flex; }
 
 ---
 
-### Breakpoints (3+ Required)
+#### Breakpoints (3+ Required)
 
 ```css
 /* 900px → collapse 2-column layout */
@@ -1013,7 +1012,7 @@ nav ul { display: flex; }
 
 ---
 
-### Mobile Dropdown Fix (Usability Issue)
+#### Mobile Dropdown Fix (Usability Issue)
 
 Problem: absolutely positioned dropdown breaks in stacked nav
 
@@ -1034,7 +1033,7 @@ Fix:
 
 ---
 
-### Viewport Height (Requirement)
+#### Viewport Height (Requirement)
 
 ```css
 main {
@@ -1046,7 +1045,7 @@ Ensures all pages fill screen without adding extra content.
 
 ---
 
-### Key Fixes
+#### Key Fixes
 
 - Converted dropdown from overlay → inline (mobile)
 - Added grid without changing layout structure
@@ -1056,16 +1055,16 @@ Ensures all pages fill screen without adding extra content.
 
 ---
 
-### Result
+#### Result
 
 - Flex + Grid both implemented
 - Layout stable across device sizes
 - Navigation usable on mobile
 - Pages meet viewport height requirement
 - Design preserved (no structural rewrite)
-## Final Layout Fixes
+### Final Layout Fixes
 
-### Grid Structure Fix
+#### Grid Structure Fix
 
 Initially, applying `display: grid` to `.events` caused the `<h2>` heading to be treated as a grid item, which broke layout alignment and constrained the event cards.
 
@@ -1096,7 +1095,7 @@ This ensures only the event cards participate in the grid.
 
 ---
 
-### Card Consistency Fix
+#### Card Consistency Fix
 
 The second event initially lacked the card styling.
 
@@ -1114,13 +1113,13 @@ This applies consistent padding, borders, and shadows across both items.
 
 ---
 
-### Responsive Behavior
+#### Responsive Behavior
 
 Media queries were used to stabilize layout behavior across screen sizes and ensure the design remained usable from desktop down to mobile widths. These adjustments helped prevent layout breakage and maintain consistent spacing and alignment.
 
 ---
 
-### Result
+#### Result
 
 - Grid requirement satisfied without breaking layout
 - Heading removed from grid flow
@@ -1150,7 +1149,7 @@ This ensures all pages include clear site identity and navigation context.
 
 ---
 
-### Favicon Implementation
+##### Favicon Implementation
 A custom favicon was added to enhance branding and improve browser tab recognition.
 
 - A Font Awesome icon (`book-open-reader`) was exported as an SVG file and used for the favicon.
@@ -1159,6 +1158,7 @@ A custom favicon was added to enhance branding and improve browser tab recogniti
 ```
 <link rel="icon" href="images/Favicon.svg">
 ```
+---
 #### Adding Google Fonts 
 
 Google Fonts allows custom fonts to be used on a website by loading them from Google's servers and applying them through CSS.
@@ -1247,3 +1247,168 @@ h1, h2 {
   font-family: "Montserrat", sans-serif;
 }
 ```
+---
+### Custom Calendar UI (Card-Based Design)
+
+This calendar transforms a basic HTML table into an interactive UI component using CSS cards, hover effects, and theme variables. The goal is to maintain a stable grid layout while making each day visually consistent and ready for interaction.
+
+---
+
+#### 1. Base Calendar Structure
+
+The calendar uses a standard HTML table for layout:
+
+    <table class="calendar">
+      <thead>
+        <tr>
+          <th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th>
+          <th>Thu</th><th>Fri</th><th>Sat</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td></td>
+
+          <td>
+            <a href="#" class="day-card">
+              <span class="day-number">1</span>
+            </a>
+          </td>
+
+          <td>
+            <a href="#" class="day-card">
+              <span class="day-number">2</span>
+            </a>
+          </td>
+
+          <td>
+            <a href="event-meeting.html" class="day-card">
+              <span class="day-number">11</span>
+              <span class="event-label">Meeting</span>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+---
+
+### 2. Fix Uneven Calendar Rows
+
+Originally, event text caused rows to stretch unevenly.
+
+**Fix: Force equal cell sizing**
+
+    .calendar {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 600px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .calendar td,
+    .calendar th {
+      width: 14.28%;
+      height: 90px;
+      border: 1px solid #ccc;
+      vertical-align: top;
+    }
+
+This keeps all rows evenly aligned.
+
+---
+
+### 3. Convert Each Day into a Card
+
+Each day is wrapped in a `.day-card` to create a structured layout:
+
+    .day-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      height: 100%;
+      padding: 6px;
+      border-radius: 6px;
+
+      text-decoration: none;
+      color: inherit;
+    }
+
+**Benefits**
+
+- Prevents layout distortion  
+- Keeps all days visually consistent  
+- Enables future interactivity  
+
+---
+
+### 4. Add Hover Interaction
+
+Provide visual feedback on interaction:
+
+    .day-card:hover {
+      background-color: var(--accent);
+      color: #fff;
+    }
+
+---
+
+### 5. Wrap Calendar in a Card Container
+
+Instead of styling the table directly, wrap it in a container:
+
+    <div class="calendar-card">
+      <table class="calendar">
+        ...
+      </table>
+    </div>
+
+    .calendar-card {
+      max-width: 650px;
+      margin: 1.5rem auto;
+      padding: 1rem;
+
+      border-radius: 10px;
+      background: #ffffff;
+
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .calendar {
+      background: transparent;
+    }
+
+---
+
+### 6. Theme Integration
+
+Update the dark theme accent color:
+
+    [data-theme="dark"] {
+      --accent: #6b1f1f;
+    }
+
+All hover effects automatically update because they use `var(--accent)`.
+
+---
+
+#### Final Result
+
+- Stable table layout  
+- Evenly sized cells  
+- Card-style days  
+- Hover interaction  
+- Theme-aware styling  
+- Clickable dates  
+
+---
+
+#### Key Concept
+
+- Table → layout structure  
+- Card → interactive component  
+
+Each day becomes a reusable UI element inside a stable grid.
