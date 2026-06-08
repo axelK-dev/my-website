@@ -28,8 +28,8 @@
         </p>
         <!-- Upgraded site navigation -->
         <nav>
+            <button class="menu-toggle">☰</button>
             <ul class="navbar">
-
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="events.html">Events & Calendar</a></li>
                 <li><a href="locations.html">Locations</a></li>
@@ -129,36 +129,29 @@
     </footer>
 
     <script>
-        // --------------------------------------------------
-        // Theme initialization (session only)
-        // --------------------------------------------------
-
-        // Check if a theme was selected during this session
+        // Apply theme from this session
         const sessionTheme = sessionStorage.getItem("theme");
 
-        // Apply it if it exists
         if (sessionTheme) {
             document.documentElement.setAttribute("data-theme", sessionTheme);
         }
 
-        // --------------------------------------------------
-        // Theme button handling
-        // --------------------------------------------------
-
-        // Find all theme buttons
         const buttons = document.querySelectorAll('[data-set-theme]');
 
         buttons.forEach(button => {
             button.addEventListener('click', () => {
-
                 const theme = button.dataset.setTheme;
-
-                // Apply selected theme
                 document.documentElement.setAttribute('data-theme', theme);
-
-                // Store it for this session only
                 sessionStorage.setItem("theme", theme);
             });
+        });
+
+        /* ✅ HAMBURGER MENU LOGIC */
+        const toggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('nav ul');
+
+        toggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
         });
     </script>
 

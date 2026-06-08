@@ -82,6 +82,14 @@ nav ul {
   justify-content: center;
 }
 
+.menu-toggle {
+  display: none;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
 /* REMOVE DEFAULT LI SPACING */
 nav ul li {
   margin: 0;
@@ -411,11 +419,23 @@ MEDIA QUERIES (RESPONSIVENESS)
 /* MOBILE / TABLET COMBINED BREAKPOINT */
 @media (max-width: 480px) {
 
-  /* NAV STACK */
-  nav ul {
-    flex-direction: column;
-    gap: 0.5rem;
+  /* SHOW MENU TOGGLE BUTTON */
+  .menu-toggle {
+    display: block;
+    margin: 0 auto 1rem;
   }
+
+  /* NAV STACK */
+
+nav ul {
+  display: none;              /*  hide the menu */
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+nav ul.active {
+  display: flex;              /*  show when clicked */
+}
 
   header {
     text-align: center;

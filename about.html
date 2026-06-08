@@ -18,6 +18,7 @@
 
   <header class="site-header">
     <nav>
+      <button class="menu-toggle">☰</button>
       <ul class="navbar">
 
         <li><a href="index.html" class="active">Home</a></li>
@@ -102,25 +103,27 @@
   </footer>
 
   <script>
-    // Apply theme from this session
     const sessionTheme = sessionStorage.getItem("theme");
 
     if (sessionTheme) {
       document.documentElement.setAttribute("data-theme", sessionTheme);
     }
 
-    // Theme buttons
     const buttons = document.querySelectorAll('[data-set-theme]');
 
     buttons.forEach(button => {
       button.addEventListener('click', () => {
-
         const theme = button.dataset.setTheme;
-
         document.documentElement.setAttribute('data-theme', theme);
-
         sessionStorage.setItem("theme", theme);
       });
+    });
+
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('nav ul');
+
+    toggle.addEventListener('click', () => {
+      nav.classList.toggle('active');
     });
   </script>
 
