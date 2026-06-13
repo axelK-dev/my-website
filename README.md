@@ -1439,3 +1439,30 @@ This change helps create a clearer visual relationship between navigation elemen
   font-weight: 600;
 }
 ```
+### Event Detail Pages (Calendar Functionality Update)
+
+This update improves the functionality of the calendar component by adding dedicated event detail pages and reactivating previously placeholder links.
+
+### What was changed
+- Created two new pages:
+  - `event-meeting.html`
+  - `event-discussion.html`
+- Updated calendar links for event days (June 11 and June 19) to point to these new pages.
+- Ensured both pages use the shared stylesheet for consistent design and layout.
+
+### Why this matters
+Previously, some calendar entries linked to non-existent pages, which could result in 404 errors and reduce overall functionality. By creating simple event pages:
+- All interactive calendar elements now lead to valid destinations
+- The site meets rubric expectations for **functional components**
+- The calendar feels more complete and intentional
+
+### Design consistency
+Because these pages link to the same stylesheet (`styles.css`), they automatically inherit:
+- Site-wide typography and color themes
+- Navigation styling and layout
+- Responsive design behavior
+
+This ensures a seamless user experience across all pages without additional styling work.
+
+#### Result
+The calendar is now fully functional, scalable, and ready for future content expansion, enhancing both usability and project completeness.
