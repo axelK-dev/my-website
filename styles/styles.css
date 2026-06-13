@@ -99,7 +99,21 @@ nav ul li {
 nav a {
   text-decoration: none;
   color: var(--text);
+  font-weight: 600;
+  /* slightly stronger */
+  letter-spacing: 0.5px;
+  /* subtle polish */
+  padding: 6px 10px;
+  /* creates clickable area */
 }
+
+/* THEMES TOGGLE FONT */
+.dropbtn,
+.dropdown-content button {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+}
+
 
 /* HOVER STATE */
 nav a:hover {
@@ -427,15 +441,17 @@ MEDIA QUERIES (RESPONSIVENESS)
 
   /* NAV STACK */
 
-nav ul {
-  display: none;              /*  hide the menu */
-  flex-direction: column;
-  gap: 0.5rem;
-}
+  nav ul {
+    display: none;
+    /*  hide the menu */
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 
-nav ul.active {
-  display: flex;              /*  show when clicked */
-}
+  nav ul.active {
+    display: flex;
+    /*  show when clicked */
+  }
 
   header {
     text-align: center;

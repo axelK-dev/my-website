@@ -1410,5 +1410,32 @@ All hover effects automatically update because they use `var(--accent)`.
 
 - Table → layout structure  
 - Card → interactive component  
+---
+Each day becomes a reusable UI element inside a stable grid. (It sounds so sweet and inspirational!)
 
-Each day becomes a reusable UI element inside a stable grid.
+### Navigation & Theme Toggle Refinement
+
+This update improves the visual clarity and consistency of the site’s navigation by adjusting the typography of the theme selection controls.
+
+#### What was changed
+
+- Applied the same font family (`Montserrat`) to the **Themes dropdown label** and its buttons.
+- Increased font weight slightly to align with the navigation styling.
+
+#### Why this matters
+
+This change helps create a clearer visual relationship between navigation elements while still allowing the theme toggle to remain slightly distinct. It supports better usability by:
+
+- Making the interface feel more cohesive and intentional
+- Improving readability and consistency across interactive elements
+- Maintaining a subtle distinction between navigation links and UI controls
+
+#### Code Example
+
+```css
+.dropbtn,
+.dropdown-content button {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+}
+```
